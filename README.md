@@ -28,6 +28,7 @@ The `IndexController` contains a query on Athena - that query is reused from the
 # Other requirements
 
 - You need to set up a Cognito User Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/tutorial-create-user-pool.html) and a Cognito Identity Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/tutorial-create-identity-pool.html).
+- The user needs to be able to log in, either via a user on Cognito or via a user from a configured identity provider. The group the user belongs to needs to have the proper role attached (with S3 and Athena access).
 
 ## Adding additional identity providers
 
