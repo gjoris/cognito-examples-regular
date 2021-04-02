@@ -1,0 +1,38 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            provider: cognito
+            clientId: <COGNITO_CLIENT_ID>
+            clientSecret: <COGNITO_CLIENT_SECRET>
+            clientName: <COGNITO_CLIENT_NAME>
+            scope: openid
+            redirectUriTemplate: http://localhost:8080/login/oauth2/code/cognito
+            authorizationGrantType: authorization_code
+        provider:
+          cognito:
+            issuerUri: https://${cognito.cognitoUri}
+            authorizationUri: ${cognito.rooturl}/oauth2/authorize
+            tokenUri: ${cognito.rooturl}/oauth2/token
+            jwkSetUri: ${spring.security.oauth2.client.provider.cognito.issuerUri}/.well-known/jwks.json
+            userInfoUri: ${cognito.rooturl}/oauth2/userInfo
+            userNameAttribute: cognito:username
+
+cognito:
+  logoutUrl: ${cognito.rootUrl}/logout
+#  Root URL for Cognito - if you have configured a custom domain for your user pool, you can use that URL
+  rootUrl: <COGNITO_ROOT_URL>
+  cognitoUri: cognito-idp.<AWS_REGION>.amazonaws.com/<COGNITO_USER_POOL_ID>
+  identityPoolId: <COGNITO_IDENTITY_POOL_ID>
+
+athena:
+  outputLocation: s3://<ATHENA_OUTPUT_LOCATION>
+  database: <ATHENA_DATABASE>
+
+server:
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    remoteip:
+      protocol-header: x-forwarded-proto
