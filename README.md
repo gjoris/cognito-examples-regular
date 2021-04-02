@@ -27,7 +27,7 @@ The `IndexController` contains a query on Athena - that query is reused from the
 
 # CDK
 
-It also contains very basic CDK code to quickly deploy this on an ECS Fargate cluster. This can be found in the `/cdk` folder.
+It also contains very basic CDK code to quickly deploy this on an ECS Fargate cluster. This can be found in the `/cdk` folder. The included Dockerfile is fully self-contained, so running a `cdk deploy` will act as a deployment pipeline.
 
 
 
